@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>30</y>
+      <y>20</y>
       <width>681</width>
       <height>501</height>
      </rect>
@@ -34,35 +34,45 @@
       <property name="geometry">
        <rect>
         <x>90</x>
-        <y>280</y>
-        <width>531</width>
-        <height>71</height>
+        <y>350</y>
+        <width>481</width>
+        <height>81</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QPushButton" name="loadButton">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>130</y>
+        <x>310</x>
+        <y>230</y>
         <width>101</width>
         <height>51</height>
        </rect>
       </property>
       <property name="text">
-       <string>Load Images</string>
+       <string>Load</string>
       </property>
      </widget>
      <widget class="QLabel" name="labelSrc">
       <property name="geometry">
        <rect>
         <x>90</x>
-        <y>20</y>
-        <width>71</width>
-        <height>41</height>
+        <y>30</y>
+        <width>91</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -73,33 +83,68 @@
       <property name="geometry">
        <rect>
         <x>180</x>
-        <y>30</y>
+        <y>40</y>
         <width>391</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Enter source folder in a format suitable for your OS</string>
       </property>
      </widget>
      <widget class="QTextEdit" name="textDest">
       <property name="geometry">
        <rect>
         <x>180</x>
-        <y>70</y>
+        <y>80</y>
         <width>391</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Enter destination folder in a format suitable for your OS</string>
       </property>
      </widget>
      <widget class="QLabel" name="labelDst">
       <property name="geometry">
        <rect>
         <x>90</x>
-        <y>60</y>
-        <width>71</width>
-        <height>41</height>
+        <y>70</y>
+        <width>91</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
        <string>DEST_FOLDER</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="labelCategories">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>110</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CATEGORIES</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textCategories">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>120</y>
+        <width>391</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Enter categories separated by comma (,)</string>
       </property>
      </widget>
     </widget>
@@ -110,10 +155,10 @@
      <widget class="QLabel" name="previewLabel">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>60</y>
-        <width>301</width>
-        <height>311</height>
+        <x>30</x>
+        <y>30</y>
+        <width>341</width>
+        <height>341</height>
        </rect>
       </property>
       <property name="text">
@@ -127,9 +172,9 @@
       <property name="geometry">
        <rect>
         <x>420</x>
-        <y>50</y>
+        <y>20</y>
         <width>201</width>
-        <height>171</height>
+        <height>201</height>
        </rect>
       </property>
       <property name="title">
@@ -201,7 +246,7 @@
      <widget class="QPushButton" name="prevButton">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>80</x>
         <y>400</y>
         <width>111</width>
         <height>41</height>
@@ -214,7 +259,7 @@
      <widget class="QPushButton" name="nextButton">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>220</x>
         <y>400</y>
         <width>111</width>
         <height>41</height>
