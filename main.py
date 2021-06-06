@@ -94,10 +94,49 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 767, 21))
         self.menubar.setObjectName("menubar")
+        self.menuFile = QtWidgets.QMenu(self.menubar)
+        self.menuFile.setObjectName("menuFile")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.actionClose = QtWidgets.QAction(MainWindow)
+        self.actionClose.setShortcut(QtGui.QKeySequence("Ctrl+Q"))
+        self.actionClose.triggered.connect(self.exit_app)
+        self.actionClose.setObjectName("actionClose")
+        self.menuFile.addAction(self.actionClose)
+        # Enter
+        self.actionEnter = QtWidgets.QAction(MainWindow)
+        self.actionEnter.setShortcut(QtGui.QKeySequence("Return"))
+        self.actionEnter.triggered.connect(self.clickSave)
+        self.actionEnter.setObjectName("actionEnter")
+        self.menuFile.addAction(self.actionEnter)
+        # Prev
+        self.actionPrev = QtWidgets.QAction(MainWindow)
+        self.actionPrev.setShortcut(QtGui.QKeySequence('Left'))
+        self.actionPrev.triggered.connect(lambda: functions.clickPrev(self.previewLabel))
+        self.actionPrev.setObjectName("actionPrev")
+        self.menuFile.addAction(self.actionPrev)
+        self.menubar.addAction(self.menuFile.menuAction())
+        # Next
+        self.actionNext = QtWidgets.QAction(MainWindow)
+        self.actionNext.setShortcut(QtGui.QKeySequence('Right'))
+        self.actionNext.triggered.connect(lambda: functions.clickNext(self.previewLabel))
+        self.actionNext.setObjectName("actionNext")
+        self.menuFile.addAction(self.actionNext)
+        # Up
+        self.actionUp = QtWidgets.QAction(MainWindow)
+        self.actionUp.setShortcut(QtGui.QKeySequence('Up'))
+        self.actionUp.triggered.connect(self.clickUp)
+        self.actionUp.setObjectName("actionUp")
+        self.menuFile.addAction(self.actionUp)
+        # Down
+        self.actionDown = QtWidgets.QAction(MainWindow)
+        self.actionDown.setShortcut(QtGui.QKeySequence('Down'))
+        self.actionDown.triggered.connect(self.clickDown)
+        self.actionDown.setObjectName("actionDown")
+        self.menuFile.addAction(self.actionDown)
+        self.menubar.addAction(self.menuFile.menuAction())
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
@@ -112,7 +151,12 @@ class Ui_MainWindow(object):
         # self.label2.clicked.connect(lambda: functions.clickRadioButton(1))
         # self.label3.clicked.connect(lambda: functions.clickRadioButton(2))
 
+    def exit_app(self):
+        print("Close")
+        self.close()
+
     def clickSave(self):
+        print("clickSave")
         variables.OTHER_CATEGORY_LABEL = self.otherCategoryLabel.toPlainText()
         functions.clickSave(self.previewLabel)
 
@@ -142,6 +186,32 @@ class Ui_MainWindow(object):
         self.otherCategoryLabel.setGeometry(QtCore.QRect(50, height, 121, 31))
         height += 100
         self.saveButton.setGeometry(QtCore.QRect(460, height, 75, 23))
+
+    def clickUp(self):
+        if variables.TOTAL_LABELS <= 1:
+            return
+        curr = 0
+        for i in range(variables.TOTAL_LABELS):
+            if self.categoryLabels[i].isChecked():
+                curr = i
+                break
+        self.categoryLabels[curr].setChecked(False)
+        curr = (curr - 1 + variables.TOTAL_LABELS) % variables.TOTAL_LABELS
+        self.categoryLabels[curr].setChecked(True)
+        variables.CURR_SELECTED_LABEL_INDEX = curr
+
+    def clickDown(self):
+        if variables.TOTAL_LABELS <= 1:
+            return
+        curr = 0
+        for i in range(variables.TOTAL_LABELS):
+            if self.categoryLabels[i].isChecked():
+                curr = i
+                break
+        self.categoryLabels[curr].setChecked(False)
+        curr = (curr + 1) % variables.TOTAL_LABELS
+        self.categoryLabels[curr].setChecked(True)
+        variables.CURR_SELECTED_LABEL_INDEX = curr
 
     def clickRadioButton(self):
         for i in range(variables.TOTAL_LABELS):
@@ -174,6 +244,24 @@ class Ui_MainWindow(object):
         self.prevButton.setText(_translate("MainWindow", "PREV"))
         self.nextButton.setText(_translate("MainWindow", "NEXT"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
+        self.menuFile.setTitle(_translate("MainWindow", "File"))
+        self.actionClose.setText(_translate("MainWindow", "Close"))
+        self.actionClose.setShortcut(_translate("MainWindow", "Ctrl+Q"))
+        # Enter
+        self.actionEnter.setText(_translate("MainWindow", "Enter"))
+        self.actionEnter.setShortcut(_translate("MainWindow", "Return"))
+        # Prev
+        self.actionPrev.setText(_translate("MainWindow", "Prev"))
+        self.actionPrev.setShortcut(_translate("MainWindow", 'Left'))
+        # Next
+        self.actionNext.setText(_translate("MainWindow", "Next"))
+        self.actionNext.setShortcut(_translate("MainWindow", 'Right'))
+        # Up
+        self.actionUp.setText(_translate("MainWindow", "Up"))
+        self.actionUp.setShortcut(_translate("MainWindow", 'Up'))
+        # Down
+        self.actionDown.setText(_translate("MainWindow", "Down"))
+        self.actionDown.setShortcut(_translate("MainWindow", 'Down'))
 
 
 if __name__ == "__main__":
